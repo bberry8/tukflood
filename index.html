@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/filter.css">
+<link rel="stylesheet" href="css/nouislider.min.css">
+        <style>
+        #map {
+            width: 756px;
+            height: 572px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/tailDT.js"></script>
+<script src="js/nouislider.min.js"></script>
+<script src="js/wNumb.js"></script>
+        <script src="data/tuk_flood_all_1.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[69.4323523290176,-133.05954316180083],[69.45936730830964,-132.95964195014753]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_2008_original_0');
+        map.getPane('pane_2008_original_0').style.zIndex = 400;
+        var img_2008_original_0 = 'data/2008_original_0.png';
+        var img_bounds_2008_original_0 = [[69.39253213885225,-133.17754503482382],[69.46424168835274,-132.92005750706218]];
+        var layer_2008_original_0 = new L.imageOverlay(img_2008_original_0,
+                                              img_bounds_2008_original_0,
+                                              {pane: 'pane_2008_original_0'});
+        bounds_group.addLayer(layer_2008_original_0);
+        map.addLayer(layer_2008_original_0);
+        function pop_tuk_flood_all_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? autolinker.link(feature.properties['Id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FloodLevel'] !== null ? autolinker.link(feature.properties['FloodLevel'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Year'] !== null ? autolinker.link(feature.properties['Year'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Storm'] !== null ? autolinker.link(feature.properties['Storm'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ClimatPath'] !== null ? autolinker.link(feature.properties['ClimatPath'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_tuk_flood_all_1_0() {
+            return {
+                pane: 'pane_tuk_flood_all_1',
+                opacity: 1,
+                color: 'rgba(38,89,128,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(101,176,233,1.0)',
+                interactive: false,
+            }
+        }
+        map.createPane('pane_tuk_flood_all_1');
+        map.getPane('pane_tuk_flood_all_1').style.zIndex = 401;
+        map.getPane('pane_tuk_flood_all_1').style['mix-blend-mode'] = 'normal';
+        var layer_tuk_flood_all_1 = new L.geoJson(json_tuk_flood_all_1, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_tuk_flood_all_1',
+            layerName: 'layer_tuk_flood_all_1',
+            pane: 'pane_tuk_flood_all_1',
+            onEachFeature: pop_tuk_flood_all_1,
+            style: style_tuk_flood_all_1_0,
+        });
+        bounds_group.addLayer(layer_tuk_flood_all_1);
+        map.addLayer(layer_tuk_flood_all_1);
+        setBounds();
+        var mapDiv = document.getElementById('map');
+        var row = document.createElement('div');
+        row.className="row";
+        row.id="all";
+        row.style.height = "100%";
+        var col1 = document.createElement('div');
+        col1.className="col9";
+        col1.id = "mapWindow";
+        col1.style.height = "99%";
+        col1.style.width = "80%";
+        col1.style.display = "inline-block";
+        var col2 = document.createElement('div');
+        col2.className="col3";
+        col2.id = "menu";
+        col2.style.display = "inline-block";
+        mapDiv.parentNode.insertBefore(row, mapDiv);
+        document.getElementById("all").appendChild(col1);
+        document.getElementById("all").appendChild(col2);
+        col1.appendChild(mapDiv)
+        var Filters = {"ClimatPath": "str","Storm": "str","Year": "str"};
+        function filterFunc() {
+          map.eachLayer(function(lyr){
+          if ("options" in lyr && "dataVar" in lyr["options"]){
+            features = this[lyr["options"]["dataVar"]].features.slice(0);
+            try{
+              for (key in Filters){
+                keyS = key.replace(/[^a-zA-Z0-9_]/g, "")
+                if (Filters[key] == "str" || Filters[key] == "bool"){
+                  var selection = [];
+                  var options = document.getElementById("sel_" + keyS).options
+                  for (var i=0; i < options.length; i++) {
+                    if (options[i].selected) selection.push(options[i].value);
+                  }
+                    try{
+                      if (key in features[0].properties){
+                        for (i = features.length - 1;
+                          i >= 0; --i){
+                          if (selection.indexOf(
+                          features[i].properties[key])<0
+                          && selection.length>0) {
+                          features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                  }
+                }
+                if (Filters[key] == "int"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (parseInt(features[i].properties[key])
+                          < sliderVals[0]
+                          || parseInt(features[i].properties[key])
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "real"){
+                  sliderVals =  document.getElementById(
+                    "div_" + keyS).noUiSlider.get();
+                  try{
+                    if (key in features[0].properties){
+                    for (i = features.length - 1; i >= 0; --i){
+                      if (features[i].properties[key]
+                          < sliderVals[0]
+                          || features[i].properties[key]
+                          > sliderVals[1]){
+                            features.splice(i,1);
+                          }
+                        }
+                      }
+                    } catch(err){
+                    }
+                  }
+                if (Filters[key] == "date"
+                  || Filters[key] == "datetime"
+                  || Filters[key] == "time"){
+                  try{
+                    if (key in features[0].properties){
+                      HTMLkey = key.replace(/[&\/\\#,+()$~%.'":*?<>{} ]/g, '');
+                      startdate = document.getElementById("dat_" +
+                        HTMLkey + "_date1").value.replace(" ", "T");
+                      enddate = document.getElementById("dat_" +
+                        HTMLkey + "_date2").value.replace(" ", "T");
+                      for (i = features.length - 1; i >= 0; --i){
+                        if (features[i].properties[key] < startdate
+                          || features[i].properties[key] > enddate){
+                          features.splice(i,1);
+                        }
+                      }
+                    }
+                  } catch(err){
+                  }
+                }
+              }
+            } catch(err){
+            }
+          this[lyr["options"]["layerName"]].clearLayers();
+          this[lyr["options"]["layerName"]].addData(features);
+          }
+          })
+        }
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Year = document.createElement('div');
+            div_Year.id = "div_Year";
+            div_Year.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Year);
+            sel_Year = document.createElement('select');
+            sel_Year.multiple = true;
+            sel_Year.size = 3;
+            sel_Year.id = "sel_Year";
+            var Year_options_str = "<option value='' unselected></option>";
+            sel_Year.onchange = function(){filterFunc()};
+            Year_options_str  += '<option value="2021">2021</option>';
+            Year_options_str  += '<option value="2050">2050</option>';
+            Year_options_str  += '<option value="2100">2100</option>';
+            sel_Year.innerHTML = Year_options_str;
+            div_Year.appendChild(sel_Year);
+            var lab_Year = document.createElement('div');
+            lab_Year.innerHTML = 'Year';
+            lab_Year.className = 'filterlabel';
+            div_Year.appendChild(lab_Year);
+            var reset_Year = document.createElement('div');
+            reset_Year.innerHTML = 'clear filter';
+            reset_Year.className = 'filterlabel';
+            reset_Year.onclick = function() {
+                var options = document.getElementById("sel_Year").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Year.appendChild(reset_Year);
+        L.ImageOverlay.include({
+            getBounds: function () {
+                return this._bounds;
+            }
+        });
+			var div_ClimatPath = document.createElement('div');
+            div_ClimatPath.id = "div_ClimatPath";
+            div_ClimatPath.className= "filterselect";
+            document.getElementById("menu").appendChild(div_ClimatPath);
+            sel_ClimatPath = document.createElement('select');
+            sel_ClimatPath.multiple = true;
+            sel_ClimatPath.size = 3;
+            sel_ClimatPath.id = "sel_ClimatPath";
+            var ClimatPath_options_str = "<option value='' unselected></option>";
+            sel_ClimatPath.onchange = function(){filterFunc()};
+            ClimatPath_options_str  += '<option value="(2021)">(2021)</option>';
+            ClimatPath_options_str  += '<option value="RCP4.5">RCP4.5</option>';
+            ClimatPath_options_str  += '<option value="RCP8.6">RCP8.6</option>';
+            sel_ClimatPath.innerHTML = ClimatPath_options_str;
+            div_ClimatPath.appendChild(sel_ClimatPath);
+            var lab_ClimatPath = document.createElement('div');
+            lab_ClimatPath.innerHTML = 'Climate Scenario';
+            lab_ClimatPath.className = 'filterlabel';
+            div_ClimatPath.appendChild(lab_ClimatPath);
+            var reset_ClimatPath = document.createElement('div');
+            reset_ClimatPath.innerHTML = 'clear filter';
+            reset_ClimatPath.className = 'filterlabel';
+            reset_ClimatPath.onclick = function() {
+                var options = document.getElementById("sel_ClimatPath").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_ClimatPath.appendChild(reset_ClimatPath);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Storm = document.createElement('div');
+            div_Storm.id = "div_Storm";
+            div_Storm.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Storm);
+            sel_Storm = document.createElement('select');
+            sel_Storm.multiple = true;
+            sel_Storm.size = 4;
+            sel_Storm.id = "sel_Storm";
+            var Storm_options_str = "<option value='' unselected></option>";
+            sel_Storm.onchange = function(){filterFunc()};
+            Storm_options_str  += '<option value="0">Sea level</option>';
+            Storm_options_str  += '<option value="2">2-year storm</option>';
+            Storm_options_str  += '<option value="50">50-year storm</option>';
+            Storm_options_str  += '<option value="100">100-year storm</option>';
+            sel_Storm.innerHTML = Storm_options_str;
+            div_Storm.appendChild(sel_Storm);
+            var lab_Storm = document.createElement('div');
+            lab_Storm.innerHTML = 'Storm';
+            lab_Storm.className = 'filterlabel';
+            div_Storm.appendChild(lab_Storm);
+            var reset_Storm = document.createElement('div');
+            reset_Storm.innerHTML = 'clear filter';
+            reset_Storm.className = 'filterlabel';
+            reset_Storm.onclick = function() {
+                var options = document.getElementById("sel_Storm").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Storm.appendChild(reset_Storm);
+            document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            
+        </script>
+    </body>
+</html>
