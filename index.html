@@ -264,7 +264,7 @@
             sel_ClimatPath.innerHTML = ClimatPath_options_str;
             div_ClimatPath.appendChild(sel_ClimatPath);
             var lab_ClimatPath = document.createElement('div');
-            lab_ClimatPath.innerHTML = 'ClimatPath';
+            lab_ClimatPath.innerHTML = 'Climate Scenario';
             lab_ClimatPath.className = 'filterlabel';
             div_ClimatPath.appendChild(lab_ClimatPath);
             var reset_ClimatPath = document.createElement('div');
@@ -293,8 +293,8 @@
             var Storm_options_str = "<option value='' unselected></option>";
             sel_Storm.onchange = function(){filterFunc()};
             //Storm_options_str  += '<option value="0">Sea level</option>';
-			Storm_options_str  += '<option value="2">2-year storm</option>';
-			//Storm_options_str  += '<option value="50">50-year storm</option>';
+	    Storm_options_str  += '<option value="2">2-year storm</option>';
+	    //Storm_options_str  += '<option value="50">50-year storm</option>';
             Storm_options_str  += '<option value="100">100-year storm</option>';
             sel_Storm.innerHTML = Storm_options_str;
             div_Storm.appendChild(sel_Storm);
