@@ -223,60 +223,26 @@
         }
             document.getElementById("menu").appendChild(
                 document.createElement("div"));
-            var div_Storm_str = document.createElement('div');
-            div_Storm_str.id = "div_Storm_str";
-            div_Storm_str.className= "filterselect";
-            document.getElementById("menu").appendChild(div_Storm_str);
-            sel_Storm_str = document.createElement('select');
-            sel_Storm_str.multiple = true;
-            sel_Storm_str.size = 5;
-            sel_Storm_str.id = "sel_Storm_str";
-            var Storm_str_options_str = "<option value='' unselected></option>";
-            sel_Storm_str.onchange = function(){filterFunc()};
-            Storm_str_options_str  += '<option value="10">10</option>';
-            Storm_str_options_str  += '<option value="100">100</option>';
-            Storm_str_options_str  += '<option value="2">2</option>';
-            Storm_str_options_str  += '<option value="200">200</option>';
-            Storm_str_options_str  += '<option value="50">50</option>';
-            sel_Storm_str.innerHTML = Storm_str_options_str;
-            div_Storm_str.appendChild(sel_Storm_str);
-            var lab_Storm_str = document.createElement('div');
-            lab_Storm_str.innerHTML = 'Storm_str';
-            lab_Storm_str.className = 'filterlabel';
-            div_Storm_str.appendChild(lab_Storm_str);
-            var reset_Storm_str = document.createElement('div');
-            reset_Storm_str.innerHTML = 'clear filter';
-            reset_Storm_str.className = 'filterlabel';
-            reset_Storm_str.onclick = function() {
-                var options = document.getElementById("sel_Storm_str").options;
-                for (var i=0; i < options.length; i++) {
-                    options[i].selected = false;
-                }
-                filterFunc();
-            };
-            div_Storm_str.appendChild(reset_Storm_str);
-            document.getElementById("menu").appendChild(
-                document.createElement("div"));
             var div_Year_str = document.createElement('div');
             div_Year_str.id = "div_Year_str";
             div_Year_str.className= "filterselect";
             document.getElementById("menu").appendChild(div_Year_str);
             sel_Year_str = document.createElement('select');
             sel_Year_str.multiple = true;
-            sel_Year_str.size = 3;
+            sel_Year_str.size = 4;
             sel_Year_str.id = "sel_Year_str";
-            var Year_str_options_str = "<option value='' unselected></option>";
+            var Year_str_options_str = "<option value='0'>Select a year:</option>";
             sel_Year_str.onchange = function(){filterFunc()};
-            Year_str_options_str  += '<option value="2020">2020</option>';
-            Year_str_options_str  += '<option value="2050">2050</option>';
+            Year_str_options_str  += '<option value="2020" selected>2020</option>';
+			Year_str_options_str  += '<option value="2050">2050</option>';
             Year_str_options_str  += '<option value="2100">2100</option>';
             sel_Year_str.innerHTML = Year_str_options_str;
             div_Year_str.appendChild(sel_Year_str);
             var lab_Year_str = document.createElement('div');
-            lab_Year_str.innerHTML = 'Year_str';
+            /*lab_Year_str.innerHTML = 'Year';*/ /* Selector box label */
             lab_Year_str.className = 'filterlabel';
             div_Year_str.appendChild(lab_Year_str);
-            var reset_Year_str = document.createElement('div');
+            /* var reset_Year_str = document.createElement('div');
             reset_Year_str.innerHTML = 'clear filter';
             reset_Year_str.className = 'filterlabel';
             reset_Year_str.onclick = function() {
@@ -286,7 +252,41 @@
                 }
                 filterFunc();
             };
-            div_Year_str.appendChild(reset_Year_str);
+            div_Year_str.appendChild(reset_Year_str); */
+			document.getElementById("menu").appendChild(
+                document.createElement("div"));
+            var div_Storm_str = document.createElement('div');
+            div_Storm_str.id = "div_Storm_str";
+            div_Storm_str.className= "filterselect";
+            document.getElementById("menu").appendChild(div_Storm_str);
+            sel_Storm_str = document.createElement('select');
+            sel_Storm_str.multiple = true;
+            sel_Storm_str.size = 5; /* selector box size*/
+            sel_Storm_str.id = "sel_Storm_str";
+            var Storm_str_options_str = "<option value='0' selected>Select a storm probability:</option>";
+            sel_Storm_str.onchange = function(){filterFunc()};
+			Storm_str_options_str  += '<option value="2">1 in 2</option>';
+			/*Storm_str_options_str  += '<option value="10">1 in 10</option>'; */
+			Storm_str_options_str  += '<option value="50">1 in 50</option>';
+            Storm_str_options_str  += '<option value="100">1 in 100</option>';
+            Storm_str_options_str  += '<option value="200">1 in 200</option>';
+            sel_Storm_str.innerHTML = Storm_str_options_str;
+            div_Storm_str.appendChild(sel_Storm_str);
+            var lab_Storm_str = document.createElement('div');
+            /* lab_Storm_str.innerHTML = 'Storm probability'; */ /* Selector box label */
+            lab_Storm_str.className = 'filterlabel';
+            div_Storm_str.appendChild(lab_Storm_str);
+            /* var reset_Storm_str = document.createElement('div'); 
+            reset_Storm_str.innerHTML = 'clear filter';
+            reset_Storm_str.className = 'filterlabel';
+            reset_Storm_str.onclick = function() {
+                var options = document.getElementById("sel_Storm_str").options;
+                for (var i=0; i < options.length; i++) {
+                    options[i].selected = false;
+                }
+                filterFunc();
+            };
+            div_Storm_str.appendChild(reset_Storm_str); */  
         </script>
     </body>
 </html>
